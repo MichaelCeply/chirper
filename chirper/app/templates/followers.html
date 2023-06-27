@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <a class="btn btn-secondary mb-4" href="{% url 'profile' current_user %}">Back</a>
+                {% for user in users %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="{% url 'profile' user.id %}">{{ user.username }}</a></h3>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

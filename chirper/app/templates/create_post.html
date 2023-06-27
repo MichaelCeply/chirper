@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card my-5">
+        <div class="card-body">
+          <h2 class="card-title mb-4">Chirp</h2>
+          <form action="{% url 'create_post' %}" method="post">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+              {{form.content}}
+            </div>
+            <div class="form-group mb-0 text-end">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

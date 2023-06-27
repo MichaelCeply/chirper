@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h3><a href="{% url 'profile' post.author.id %}">{{post.author}}</a></h3>
+    <p>{{post.content}}</p>
+    {% if liked %}
+        <a href="{% url 'like' post_id=post.id %}" class="btn btn-danger mb-2">Liked</a>
+    {% else %}
+        <a href="{% url 'like' post_id=post.id %}" class="btn btn-primary mb-2">Like</a>
+    {% endif %}
+    <a href="{% url 'likes' post_id=post.id %}" class="btn btn-primary mb-2">List of likes</a>
+    <h3>Write a comment</h3>
+    <form action="{% url 'comment' post.id%}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Comment">
+    </form>
+
+    {% for comment in comments%}
+            <h3><a href="{% url 'profile' user.id %}">{{comment.author.username}}</a></h3>
+            <p>{{comment.content}}</p>
+            <a href="{% url 'comment_comment' post_id=post.id comment_id=comment.id%}">Comments</a>
+    {% endfor %}
+{% endblock %}
